@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+    <style>
+      .container {
+        text-align: center;
+        margin-top: 23px;
+      }
+      .container h1{
+        font-family: 'Merienda', cursive;
+      }
+      table {
+        margin: auto;
+      }
+      input {
+        font-size: 36px;
+        border-radius: 23px;
+        border: 5px solid black;
+      }
+
+      button {
+        border-radius: 20px;
+        font-size: 40px;
+        background-color: teal;
+        width: 107px;
+        height: 73px;
+      }
+      .calculator {
+        display: inline-block;
+        background-color: lawngreen ;
+        padding: 23px;
+        border-radius: 53px;
+        border: 2px solid black
+      }
+     body{
+         background-color: aliceblue;
+     }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Calculator</h1>
+      <div class="calculator">
+        <input type="text" name="screen" id="screen" />
+
+        <table>
+          <tr>
+            <td><button>(</button></td>
+            <td><button>)</button></td>
+            <td><button>c</button></td>
+            <td><button>%</button></td>
+          </tr>
+          <tr>
+            <td><button>7</button></td>
+            <td><button>8</button></td>
+            <td><button>9</button></td>
+            <td><button>X</button></td>
+          </tr>
+          <tr>
+            <td><button>4</button></td>
+            <td><button>5</button></td>
+            <td><button>6</button></td>
+            <td><button>-</button></td>
+          </tr>
+          <tr>
+            <td><button>1</button></td>
+            <td><button>2</button></td>
+            <td><button>3</button></td>
+            <td><button>+</button></td>
+          </tr>
+          <tr>
+            <td><button>0</button></td>
+            <td><button>.</button></td>
+            <td><button>/</button></td>
+            <td><button>=</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let scr = document.getElementById("screen");// screen p operation perform krne k liye ek variable 
+    buttons = document.querySelectorAll("button");/* buttons p operation perform krne k liye ek variable . 
+                                                   ispe queryselectorall lgaya taki hrr buttton k liye ek common variavle bn jaye*/
+    let screenvalue = "";   // screen p jo bhi likhna h usko store krne k liye ek variable
+    for (item of buttons) {    /*item yha ek variable ki trh h jese hum for loop m int i likhte the . ye for loop hrr button k liye h*/
+      item.addEventListener("click", (e) => {  //for each button if we click perform certain function
+        buttonText = e.target.innerText;   //copies the text of the button which is clicked in buttontext variable
+        console.log("button text is", buttonText);   /*this shows which button is pressed /or the text 
+                                                       present in the btn*/
+        if (buttonText == 'X') {    
+          buttonText = '*';    //ab sbse pehle X ko * se replace krdo taki eval function usse pehchan ske  
+          screenvalue += buttonText;   //jo bhi button press ho rhe h wo screenvalue m store hote rhe
+          scr.value = screenvalue;     /*ab jo screenvalue variable m chize pdi h unhe screen p dikhane k liye scr k andr daldo */
+        } 
+        else if (buttonText == 'c') {    
+          screenvalue = "";            //sbse pehle p jo screen p dia h usse khali krdo 
+          scr.value = screenvalue;     /*ab jo screenvalue variable m chize pdi h unhe screen p dikhane k liye scr k andr daldo*/
+        }
+        else if (buttonText == '=') {
+          scr.value = eval(screenvalue);  /*sbse pehle screenvalue m jo kuch bhi h usse calc krke result 
+                                            ko screen p dikhane k liye scr k andr daal do */
+        }
+        
+         else {   //ye bche hue operations k liye h jese addition wgera
+          screenvalue += buttonText;    //jo bhi button press ho rhe h wo screenvalue m store hote rhe
+          scr.value = screenvalue;   /*ab jo screenvalue variable m chize pdi h unhe screen p dikhane k liye scr k andr daldo*/
+        }
+      });
+    }
+  </script>
+</html>
